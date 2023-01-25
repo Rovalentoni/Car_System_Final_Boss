@@ -21,7 +21,7 @@
             <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
             <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
             <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-            <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
+            <li class="liNavigation"><a href="api.php/?f=logout">Logout</a></li>
         </ul>
     </div>
     <div class="sideBar">
@@ -35,25 +35,23 @@
 
     </div>
 
-
-    <?php
-
-    foreach ($currentUsers as $key => $value) :
-    ?> <tr> <?php if ($value['users_id'] == $_GET['userid']) { ?>
+ <tr> 
                 <div class="divMiddle">
-                    <form action="/?f=editUser" method="POST">
+                    <form action="/api.php/?f=editUser_Api" method="POST" id="editForm">
                         <div class="middlecontroller">
                             <div><label>Nome do usuário:</label></div>
-                            <div><input type="text" class="inputListing" name="users_username" value="<?php echo $value['users_username'] ?>"></div>
+                            <div><input type="text" class="inputListing" name="users_username" id="users_username"></div>
                             <div><label>Email do usuário:</label></div>
-                            <input type="text" class="inputListing" name="users_email" value="<?php echo $value['users_email'] ?>">
+                            <input type="text" class="inputListing" name="users_email" id="users_email">
                             <div><label>Senha do usuário:</label></div>
-                            <div><input type="text" class="inputListing" name="users_password" value="<?php echo $value['users_password'] ?>"></label></div>
-                            <input type="hidden" name="userid" value ="<?php echo $value['users_id'] ?>">
-                            <input class="buttonEntrar" type="submit" value="Salvar">
+                            <div><input type="text" class="inputListing" name="users_password" id="users_password"></label></div>
+                            <input type="hidden" name="userid" id="users_id" >
                     </form>
-            <?php }
-        endforeach ?>
+                    <button class="buttonEntrar editBtn" data-id="<?php echo $_GET['userid']?>" id="saveInfoBtn"> Salvar </button>
+
+
+            <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+            <script src="/user_edit_script.js"></script>
 </body>
 
 </html>

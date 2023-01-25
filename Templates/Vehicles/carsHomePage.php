@@ -27,61 +27,44 @@
 
 <body>
 
-</body>
+    <h3 class="headerUser">Gerenciamento de Veículos de: <?php echo $_SESSION['username'] ?></h3>
 
-</html>
+    <div class="navigationMenu">
+        <ul class="ulNavigation">
+            <li class="liNavigation"><a href="/?f=mainHome">Home</a></li>
+            <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
+            <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
+            <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
+            <li class="liNavigation"><a href="api.php/?f=logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="sideBar">
+        <ul class="sideUl">
+            <li class="sideLi"><a href="/?f=carsHomePage">Listar</a></li>
+            <li class="sideLi"><a href="/?f=carsCreatePage">Criar</a></li>
+        </ul>
 
-<h3 class="headerUser">Gerenciamento de Veículos de: <?php echo $_SESSION['username'] ?></h3>
-
-<div class="navigationMenu">
-    <ul class="ulNavigation">
-        <li class="liNavigation"><a href="/?f=mainHome">Home</a></li>
-        <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
-        <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
-        <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-        <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
-    </ul>
-</div>
-<div class="sideBar">
-    <ul class="sideUl">
-        <li class="sideLi"><a href="/?f=carsHomePage">Listar</a></li>
-        <li class="sideLi"><a href="/?f=carsCreatePage">Criar</a></li>
-    </ul>
-
-</div>
-<div>
-    <table class="tableHome">
-        <tr>
-            <th>ID</th>
-            <th>Placa</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Tipo</th>
-            <th>Ano</th>
-            <th>Cor</th>
-            <th style="width:280px;">Ações</th>
-
-        </tr>
-        <?php
-        
-        foreach ($currentCars as $key => $value) :
-        ?> <tr>
-                <td class="tdTable"><?php echo $value['cars_id'] ?></td>
-                <td class="tdTable"><?php echo $value['cars_plate'] ?></td>
-                <td class="tdTable"><?php echo $value['cars_manufacturer'] ?></td>
-                <td class="tdTable"><?php echo $value['cars_model'] ?></td>
-                <td class="tdTable"><?php echo $value['cars_type'] ?></td>
-                <td class="tdTable"><?php echo $value['cars_year'] ?></td>
-                <td class="tdTable"><?php echo $value['cars_color'] ?></td>
-                <td class="tdTable">
-                    <button class="smallerButton" onclick="window.location='/?f=carsEditPage&carId=<?php echo $value['cars_id'] ?>'">Editar</button>
-                    <button class="smallerRedButton" onclick="window.location='/?f=deleteCars&carId=<?php echo $value['cars_id'] ?>'">Deletar</button>
-                    <button class="detailsButton2" onclick="window.location='/?f=carsDetailsPage&carId=<?php echo $value['cars_id'] ?>'">Ver Detalhes</button>
-
-                </td>
+    </div>
+    <div>
+        <table class="tableHome">
+            <tr>
+                <th>ID</th>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Tipo</th>
+                <th>Ano</th>
+                <th>Cor</th>
+                <th style="width:280px;">Ações</th>
 
             </tr>
-        <?php endforeach; ?>
+            
+                <tbody class="tdTable" id="tbody"></tbody>
+   
 
-    </table>
-</div>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="/cars_list_script.js"></script>
+</body>

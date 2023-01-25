@@ -27,7 +27,7 @@
 
 
 
-    <h3 class="headerUser">Gerenciamento de Usuários de: <?php echo $_SESSION['username'] ?></h3>
+    <h3 class="headerUser">Gerenciamento de Usuários</h3>
 
     <div class="navigationMenu">
         <ul class="ulNavigation">
@@ -35,7 +35,7 @@
             <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
             <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
             <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-            <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
+            <li class="liNavigation"><a href="/api.php/?f=logout">Logout</a></li>
         </ul>
     </div>
     <div class="sideBar">
@@ -54,28 +54,12 @@
                 <th style="width:230px;">Ações</th>
 
             </tr>
-            <?php
-            
-            foreach ($currentUsers as $key => $value) :
-            ?> <tr>
-                    <td class="tdTable"><?php echo $value['users_id']; ?></td>
-                    <td class="tdTable"><?php echo $value['users_username']; ?></td>
-                    <td class="tdTable"><?php echo $value['users_email']; ?></td>
-                    <td class="tdTable"><?php echo $value['users_password']; ?></td>
-
-                    <td class="tdTable">
-                        <button class="smallerButton" onclick="window.location='/?f=userEditPage&userid=<?php echo $value['users_id'] ?>'">Editar</button>
-                        <button class="smallerRedButton" onclick="window.location='/?f=deleteUser&userid=<?php echo $value['users_id'] ?>'">Deletar</button>
-                        <button class="detailsButton2" onclick="window.location='/?f=userDetailsPage&userid=<?php echo $value['users_id'] ?>'">Ver Detalhes</button>
-
-                    </td>
-
-                </tr>
-            <?php endforeach;?>
-
+        <tbody id="tbody" class="tdTable"></tbody>
         </table>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="/user_list_script.js"></script>
 </body>
 
 </html>

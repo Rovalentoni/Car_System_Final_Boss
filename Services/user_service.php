@@ -8,7 +8,8 @@ class UserService
 
     function __construct()
     {
-        include_once(INCLUDE_PATH . '/Core/connection.php');
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        -+include_once(INCLUDE_PATH . '/Core/connection.php');
         $this->mysqli = new Cnn([
             'host' => 'localhost',
             'username' => 'root',
@@ -23,9 +24,9 @@ class UserService
 
     public function listUsers()
     {
-        $query = 'SELECT * FROM users_table;';
+        $query = 'SELECT * FROM users.users_table';
         $infoList = $this->mysqli->givenQuery($query);
-        return ($infoList);
+        return $infoList;
     }
 
     //--------- Função de Create -------------//
@@ -33,14 +34,12 @@ class UserService
     public function create_User($param)
     {
         if (empty($param['users_username']) || empty($param['users_password']) || empty($param['users_email'])) {
-            header('Location:/?f=userCreatePage&blank=true');
-        } else if (strlen($param['users_username']) < 4 || strlen($param['users_password']) < 4 || strlen($param['users_email']) < 4) {
-            header('Location:/?f=usersCreatePage&strlen=true');
-        } else {
+            return false;
+        } else
             $createQuery = "INSERT INTO users.users_table (users_username, users_email, users_password) VALUES ( '" . $param['users_username'] . "','" . $param['users_email'] . "','" .  $param['users_password'] . "');";
-            $this->mysqli->givenQuery($createQuery);
-            return true;
-        }
+        $this->mysqli->givenQuery($createQuery);
+        return true;
+        // }
     }
 
     //--------- Função de Delete -------------//

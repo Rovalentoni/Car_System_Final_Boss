@@ -11,9 +11,6 @@
 
 <body>
 
-</body>
-
-</html>
 
 <h3 class="headerUser">Cadastro de Motoristas de: <?php echo $_SESSION['username'] ?></h3>
 
@@ -23,7 +20,7 @@
         <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
         <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
         <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-        <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
+        <li class="liNavigation"><a href="api.php/?f=logout">Logout</a></li>
     </ul>
 </div>
 <div class="sideBar">
@@ -41,7 +38,7 @@
 </div>
 
 <div class="divMiddle">
-    <form action="/?f=createDriver" method="POST">
+    <form action="api.php/?f=createDrivers_Api" method="POST" id="driverCreateForm">
         <div class="middlecontroller">
             <h2>Cadastro de novo Motorista:</h2>
 
@@ -60,9 +57,13 @@
             <div><label>Sexo do Motorista:</label></div>
             <div><input type="text" class="inputMiddle" name="drivers_sex"></label></div>
 
-            <div><input type="submit" class="buttonEntrar" value="Cadastrar"></div>
+            <div><button type="submit" class="buttonEntrar" id="saveBtn">Cadastrar</button></div>
         </div>
     </form>
 </div>
 
-</html>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="/driver_create_script.js"></script>
+
+</body>

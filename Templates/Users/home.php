@@ -35,7 +35,7 @@
             <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
             <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
             <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-            <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
+            <li class="liNavigation"><a href="/api.php/?f=logout">Logout</a></li>
         </ul>
     </div>
 

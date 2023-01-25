@@ -25,9 +25,7 @@
 
 <body>
 
-</body>
 
-</html>
 
 <h3 class="headerUser">Gerenciamento de Motoristas de: <?php echo $_SESSION['username'] ?></h3>
 
@@ -37,7 +35,7 @@
         <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
         <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
         <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-        <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
+        <li class="liNavigation"><a href="api.php/?f=logout">Logout</a></li>
     </ul>
 </div>
 <div class="sideBar">
@@ -59,25 +57,13 @@
             <th style="width:280px;">Ações</th>
 
         </tr>
-        <?php
-
-        foreach ($currentDrivers as $key => $value) :
-        ?> <tr>
-                <td class="tdTable"><?php echo $value['drivers_id'] ?></td>
-                <td class="tdTable"><?php echo $value['drivers_username'] ?></td>
-                <td class="tdTable"><?php echo $value['drivers_age'] ?></td>
-                <td class="tdTable"><?php echo $value['drivers_type'] ?></td>
-                <td class="tdTable"><?php echo $value['drivers_cnh'] ?></td>
-                <td class="tdTable"><?php echo $value['drivers_sex'] ?></td>
-
-                <td class="tdTable">
-                    <button class="smallerButton" onclick="window.location='/?f=driversEditPage&driverid=<?php echo $value['drivers_id'] ?>'">Editar</button>
-                    <button class="smallerRedButton" onclick="window.location='/?f=deleteDriver&driverid=<?php echo $value['drivers_id'] ?>'">Deletar</button>
-                    <button class="detailsButton2" onclick="window.location='/?f=driversDetailsPage&driverid=<?php echo $value['drivers_id'] ?>'">Ver Detalhes</button>
-                </td>
-
-            </tr>
-        <?php endforeach; ?>
+        <tbody id="tbody_Driver" class="tdTable"></tbody>
 
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="/driver_list_script.js"></script>
+
+
+</body>

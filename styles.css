@@ -337,12 +337,22 @@ button:hover {
     border-radius: 20px;
     width: 70%;
     left: 335px;
-    height: 500px;
+    height: auto;
     text-align: center;
     color: black;
     font-family:Georgia, 'Times New Roman', Times, serif;
     
 }
+
+.form-middle {
+    display:flex;
+    margin: auto;
+    background-color: white;
+    vertical-align:middle;
+    text-align: center;
+
+}
+
 .detailsInfo {
     display: block;
     position: relative;
@@ -353,6 +363,7 @@ button:hover {
     margin: 10px;
     padding: 15px;
     font-size: 20px;
+
 }
 
 .detailsButton {
@@ -388,4 +399,18 @@ button:hover {
     position: relative;
     bottom: 10px;
     left: 300px;
+}
+
+.detailsButton4 {
+    background-color: #04AA6D;
+    color: white;
+    padding: 20px 15px;
+    margin: 15px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    position: relative;
+    bottom: 10px;
+    left: 1000px;
+    bottom: 300px;
 }

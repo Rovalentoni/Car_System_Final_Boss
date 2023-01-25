@@ -21,7 +21,7 @@
             <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
             <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
             <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-            <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
+            <li class="liNavigation"><a href="api.php/?f=logout">Logout</a></li>
         </ul>
     </div>
     <div class="sideBar">
@@ -36,29 +36,43 @@
     </div>
 
 
-    <?php
 
-    foreach ($currentCars as $key => $value) :
-    ?> <tr> <?php if ($value['cars_id'] == $_GET['carId']) { ?>
+    
                 <div class="divMiddle">
-                    <form action="/?f=editCars&carId=<?php echo $value['cars_id'] ?>&edit=true" method="POST">
+                    <form action="/api.php/?f=editCars_Api" method="POST" id="editForm">
                         <div class="middlecontroller">
-                            <b><div><label>Placa</label></div></b>
-                            <input type="text" class="inputListing" name="placa" value="<?php echo $value['cars_plate'] ?>">
-                            <b><div><label>Fabricante</label></div></b>
-                            <input type="text" class="inputListing" name="marca" value="<?php echo $value['cars_manufacturer'] ?>">
-                            <b><div><label>Modelo</label></div></b>
-                            <input type="text" class="inputListing" name="modelo" value="<?php echo $value['cars_model'] ?>">
-                            <b><div><label>Type</label></div></b>
-                            <input type="text" class="inputListing" name="tipo" value="<?php echo $value['cars_type'] ?>">
-                            <b> <div><label>Ano</label></div></b>
-                            <input type="number" class="inputListing" name="ano" maxlength = "4" min="1900" max="2024" value="<?php echo $value['cars_year'] ?>">
-                            <b><div><label>Cor</label></div></b>
-                            <input type="text" class="inputListing" name="cor" value="<?php echo $value['cars_color'] ?>">
-                            <input class="buttonEntrar" type="submit" value="Salvar">
+                            <b>
+                                <div><label>Placa</label></div>
+                            </b>
+                            <input type="text" class="inputListing"  name="placa" id="cars_plate">
+                            <b>
+                                <div><label>Fabricante</label></div>
+                            </b>
+                            <input type="text" class="inputListing" name="marca" id="cars_manufacturer">
+                            <b>
+                                <div><label>Modelo</label></div>
+                            </b>
+                            <input type="text" class="inputListing" name="modelo" id="cars_model">
+                            <b>
+                                <div><label>Type</label></div>
+                            </b>
+                            <input type="text" class="inputListing" name="tipo" id="cars_type">
+                            <b>
+                                <div><label>Ano</label></div>
+                            </b>
+                            <input type="number" class="inputListing" name="ano" id="cars_year">
+                            <b>
+                                <div><label>Cor</label></div>
+                            </b>
+                            <input type="text" class="inputListing" name="cor" id="cars_color">
+                            <input type="hidden" class="inputListing" name="carId" id="cars_id">
+
                     </form>
-            <?php }
-        endforeach ?>
+                    <button class="buttonEntrar" id="editBtn" value="Salvar" data-id ="<?php echo $_GET['carId'] ?>"> Salvar Edições </button>
+
+
+            <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+            <script src="/cars_edit_script.js"></script>
 </body>
 
 </html>

@@ -6,7 +6,10 @@ class Cnn
     public $mysqli;
 
     function __construct($credentials)
+
     {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
         try {
             $this->mysqli = new mysqli($credentials['host'], $credentials['username'], $credentials['password'], $credentials['database'], $credentials['port']);
         } catch (Exception $exc) {
@@ -18,8 +21,6 @@ class Cnn
 
     public function givenQuery($param)
     {
-        $this->mysqli->query($param);
-
         if (str_contains($param, 'SELECT')) {
             $infoDb = [];
             $selectObj = $this->mysqli->query($param);
@@ -28,6 +29,8 @@ class Cnn
             }
             return $infoDb;
                     //Return fora do while, se não ele parará a função no primeiro loop e salvará somente a primeira linha. 
+        } else {
+            return $this->mysqli->query($param);
         }
     }
 }

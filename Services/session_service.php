@@ -8,12 +8,14 @@ class SessionService
 
     function __construct()
     {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
         include_once(INCLUDE_PATH . '/Core/connection.php');
         $this->mysqli = new Cnn([
             'host' => 'localhost',
             'username' => 'root',
             'password' => 3005,
-            'database' => 'test',
+            'database' => 'users',
             'port' => 3306
         ]);
     }

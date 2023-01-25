@@ -27,48 +27,60 @@
 
 <body>
 
+    <h3 class="headerUser">Detalhamento de Veículos <?php echo $_SESSION['username'] ?></h3>
+
+    <div class="navigationMenu">
+        <ul class="ulNavigation">
+            <li class="liNavigation"><a href="/?f=mainHome">Home</a></li>
+            <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
+            <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
+            <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
+            <li class="liNavigation"><a href="api.php/?f=logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="sideBar">
+        <ul class="sideUl">
+            <li class="sideLi"><a href="/?f=carsHomePage">Listar</a></li>
+            <li class="sideLi"><a href="/?f=carsCreatePage">Criar</a></li>
+        </ul>
+
+    </div>
+
+    <div class="detailsPage">
+
+
+        <div class="detailsInfo">
+            <b>ID:</b>
+            <div class="detailsInfo" id="cars_id" data-id="<?php echo $_GET['carId'] ?>"></div>
+        </div>
+        <div class="detailsInfo">
+            <b>Placa:</b>
+            <div class="detailsInfo" name="cars_plate" id="cars_plate"></div>
+        </div>
+
+        <div class="detailsInfo"><b>Marca: </b>
+            <div class="detailsInfo" name="cars_manufacturer" id="cars_manufacturer"></div>
+        </div>
+
+        <div class="detailsInfo">
+            <b>Modelo:</b>
+            <div class="detailsInfo" name="cars_model" id="cars_model"></div>
+        </div>
+
+        <div class="detailsInfo">
+            <b>Tipo:</b>
+            <div class="detailsInfo" name="cars_type" id="cars_type"></div>
+        </div>
+        <div class="detailsInfo">
+            <b>Ano:</b>
+            <div class="detailsInfo" name="cars_year" id="cars_year"></div>
+        </div>
+        <div class="detailsInfo">
+            <b>Cor:</b>
+            <div class="detailsInfo" name="cars_color" id="cars_color"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="/cars_details_script.js"></script>
 </body>
-
-</html>
-
-<h3 class="headerUser">Detalhamento de Veículos <?php echo $_SESSION['username'] ?></h3>
-
-<div class="navigationMenu">
-    <ul class="ulNavigation">
-        <li class="liNavigation"><a href="/?f=mainHome">Home</a></li>
-        <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
-        <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
-        <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-        <li class="liNavigation"><a href="/?f=logout">Logout</a></li>
-    </ul>
-</div>
-<div class="sideBar">
-    <ul class="sideUl">
-        <li class="sideLi"><a href="/?f=carsHomePage">Listar</a></li>
-        <li class="sideLi"><a href="/?f=carsCreatePage">Criar</a></li>
-    </ul>
-
-</div>
-
-< </tr>
-    <?php
-
-    foreach ($currentCars as $key => $value) :
-        if ($_GET['carId'] == $value['cars_id']) {
-    ?>
-            <div class="detailsPage">
-                <ul>
-                   
-                    <li class="detailsInfo"><b>ID:</b><?php echo $value['cars_id'] ?></li>
-                <li class="detailsInfo"><b>Placa:</b><?php echo $value['cars_plate'] ?></li>
-                <li class="detailsInfo"><b>Marca:</b><?php echo $value['cars_manufacturer'] ?></li>
-                <li class="detailsInfo"><b>Modelo:</b><?php echo $value['cars_model'] ?></li>
-                <li class="detailsInfo"><b>Tipo:</b><?php echo $value['cars_typo'] ?></li>
-                <li class="detailsInfo"><b>Ano:</b><?php echo $value['cars_year'] ?></li>
-                <li class="detailsInfo"><b>Cor:</b><?php echo $value['cars_color'] ?></li>
-                </ul>
-
-        <?php }
-    endforeach ?>
-        <div> <button class="detailsButton2" onclick="window.location='/?f=carsHomePage'"> Voltar </button></div>
-            </div>

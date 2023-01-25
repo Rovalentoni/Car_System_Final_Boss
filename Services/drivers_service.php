@@ -1,6 +1,6 @@
 <?php
 
-class DriversService
+class driversService
 
 //--------- Conexão ao Banco de Dados -------------//
 
@@ -10,6 +10,8 @@ class DriversService
 
     function __construct()
     {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
         include_once(INCLUDE_PATH . '/Core/connection.php');
         $this->mysqli = new Cnn([
             'host' => 'localhost',
@@ -23,7 +25,7 @@ class DriversService
 
     //--------- Função de Read -------------//
 
-    public function readDrivers()
+    public function list_Driver()
     {
         $readQuery = "SELECT * FROM drivers.drivers_table";
         return $this->mysqli->givenQuery($readQuery);
@@ -55,11 +57,11 @@ class DriversService
     //--------- Função de Edit -------------//
 
 
-    public function edit_Driver($param, $paramGet)
+    public function edit_Driver($param)
     {
 
         $editQuery = "UPDATE drivers.drivers_table SET drivers_username = '" . $param['drivers_username'] . "', drivers_age = '" . $param['drivers_age'] . "', drivers_type = '" .
-            $param['drivers_type'] . "', drivers_cnh = '" . $param['drivers_cnh'] . "', drivers_sex = '" . $param['drivers_sex'] . "' WHERE ( drivers_id = '" . $paramGet['driverid'] . "');";
+            $param['drivers_type'] . "', drivers_cnh = '" . $param['drivers_cnh'] . "', drivers_sex = '" . $param['drivers_sex'] . "' WHERE ( drivers_id = '" . $param['driverid'] . "');";
 
         if (empty($param['drivers_username']) || empty($param['drivers_age']) || empty($param['drivers_type']) || empty($param['drivers_cnh']) || empty($param['drivers_sex'])) {
 
