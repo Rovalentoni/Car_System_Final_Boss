@@ -41,6 +41,25 @@ $(document).on("click", ".deleteBtn",function(){
     })
 })
 
+
+$(document).on('click', '#logoutBtn', function(e){
+    e.preventDefault();
+    $.ajax({
+        url: 'api.php/?f=logout',
+        type: 'GET',
+        success: function(response, status, xhr) {
+            console.log(response);
+            console.log(xhr);
+                if(xhr.status == 204) {
+                    alert ('Logout efetuado com sucesso!');
+                    window.location = "/?f=loginForm&try=2";
+                }
+        }
+    })
+})
+
+
+
 /*  Colinha das funções do ajax - Estudo
     complete(xhr,status)	
     error(xhr,status,error)	
@@ -72,34 +91,3 @@ $(document).on("click", ".deleteBtn",function(){
 //     })
 // })
 
-//Função sem o header application/json :
-
-
-// $(document).ready(function () {
-//     $.ajax({
-//         url: '/api.php/?f=listUsers_Api',
-//         type: 'GET',
-//         success: function success(response) {
-//             // alert(response);
-//             var data = JSON.parse(response);
-//             console.log(response);
-//             console.log(data);
-//             // console.log(data[0].users_email);
-//             // alert(JSON.stringify(response)); Transforma o object em um json string. 
-//             // alert(response);
-//             // console.log(Object.keys(data));
-//             // console.log(Object.values(data));
-//             var result = '';
-//             for (let i = 0; i < data.length; i++) {
-//                 result += '<tr><td>' + data[i].users_id +
-//                     '</td><td>' + data[i].users_username +
-//                     '</td><td>' + data[i].users_email +
-//                     '</td><td>' + data[i].users_password +
-//                     '</td></tr>';
-//             }
-//             $('#tbody').html(result);
-//             $('#tbody').show('slow');
-//         },
-
-//     })
-// })

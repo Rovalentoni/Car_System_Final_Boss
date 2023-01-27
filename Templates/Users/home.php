@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem vindo!</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/resources/CSS/styles.css">
 
     <style>
         body,
@@ -15,7 +15,7 @@
         }
 
         body {
-            background-image: url("/Midia/background.png");
+            background-image: url("/resources/img/background.png");
             height: 90%;
             background-position: center;
             background-repeat: no-repeat;

@@ -33,11 +33,6 @@ class Router
             header('Location:/?f=mainHome');
         } else {
             include_once INCLUDE_PATH . '/Services/login.php';
-            if (isset($_GET['try']) && $_GET['try'] == 1) {
-                echo "<div class='center red'>Suas credenciais estão incorretas </div>";
-            } else if (isset($_GET['try']) && $_GET['try'] == 2) {
-                echo "<div class='center red'>Você precisa estar conectado para acessar as páginas. </div>";
-            }
         }
     }
 

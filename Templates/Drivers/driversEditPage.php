@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edição</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/resources/CSS/styles.css">
 </head>
 
 
@@ -28,7 +28,7 @@
         <li class="sideLi"><a href="/?f=driversHomePage">Voltar</a></li>
 
     </ul>
-    <img src="/Midia/editLogo.jpg" alt="car closeup vertical" style="width: 100%; margin-top:20px; height:auto; position:relative;">
+    <img src="/resources/img/editLogo.jpg" alt="car closeup vertical" style="width: 100%; margin-top:20px; height:auto; position:relative;">
 
 </div>
 
@@ -48,5 +48,5 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/driver_edit_script.js"></script>
+    <script src="/resources/JS/driver_edit_script.js"></script>
     </body>

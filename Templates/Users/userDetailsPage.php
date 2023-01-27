@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Usuários</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/resources/CSS/styles.css">
 
     <style>
         body,
@@ -15,7 +15,7 @@
         }
 
         body {
-            background-image: url("/Midia/backgroundWhite.png");
+            background-image: url("/resources/img/backgroundWhite.png");
             height: 90%;
             background-position: center;
             background-repeat: no-repeat;
@@ -78,5 +78,5 @@
                 </div>
 
                 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-                <script src="/user_details_script.js"></script>
+                <script src="/resources/JS/user_details_script.js"></script>
 </body>

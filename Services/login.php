@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/resources/CSS/styles.css">
 
     <style>
         
@@ -15,7 +15,7 @@
   height: 100%;
 }
 body {
-    background-image: url("/Midia/background.png");
+    background-image: url("/resources/img/background.png");
             height: 90%;
             background-position: center;
             background-repeat: no-repeat;
@@ -46,7 +46,7 @@ body {
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/login_script.js"></script>
+    <script src="/Resources/JS/login_script.js"></script>
 </body>
 
 </html>

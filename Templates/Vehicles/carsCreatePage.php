@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de veículos</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/resources/CSS/styles.css">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
             <li class="sideLi"><a href="/?f=carsHomePage">Voltar</a></li>
 
         </ul>
-        <img src="/Midia/createCars.png" alt="car closeup vertical" style="width: 100%;">
+        <img src="/resources/img/createCars.png" alt="car closeup vertical" style="width: 100%;">
 
     </div>
 
@@ -66,7 +66,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/cars_create_script.js"></script>
+    <script src="/resources/JS/cars_create_script.js"></script>
 
 </body>
 

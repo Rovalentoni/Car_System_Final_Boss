@@ -41,6 +41,7 @@ class SessionService
     public function logout_User()
     {
         unset($_SESSION['login']);
-        header('Location:/?f=loginForm');
+        return true;
+        // header('Location:/?f=loginForm');
     }
 }

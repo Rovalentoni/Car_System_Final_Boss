@@ -42,6 +42,9 @@ class Api
         include_once INCLUDE_PATH . '/Services/session_service.php';
         $session_Service = new SessionService;
         $session_Service->logout_User();
+        // session_destroy();
+        // header("Location:/?f=loginForm&try=2");
+        http_response_code(204);
     }
 
     private function response_json($param)
@@ -179,11 +182,12 @@ class Api
         }
     }
 
-    public function editDrivers_Api(){
+    public function editDrivers_Api()
+    {
         include_once './Services/drivers_service.php';
         $driverService = new driversService;
         $edit = $driverService->edit_Driver($_POST);
-        if($edit == true) {
+        if ($edit == true) {
             http_response_code(200);
         } else if ($edit == false) {
             http_response_code(204);
