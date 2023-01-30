@@ -33,7 +33,7 @@ class Api
         if ($session_Service->login($_POST, $users) == true) {
             http_response_code(200);
         } else if ($session_Service->login($_POST, $users) == false) {
-            http_response_code(400);
+            http_response_code(404);
         };
     }
 

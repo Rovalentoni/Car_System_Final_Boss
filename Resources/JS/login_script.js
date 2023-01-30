@@ -1,26 +1,16 @@
-$("#login_btn").click(function () {
+$("#login_btn").click(function (e) {
+    e.preventDefault();
     var loginform = $("#login_form");
     $.ajax({
         url: loginform.attr("action"), ///api.php/?f=login_Api
         type: loginform.attr("method"), //POST
         data: loginform.serialize(),
-        statusCode: {
-            200: function () {
-                window.location = "/?f=mainHome";
-            },
-            400: function() {
-                window.location = "?f=loginForm&try=1";
-            }
+        success: function(response) {
+            window.location = "/?f=mainHome";
         },
-
-        // success: function (response) {
-        //     alert('This was a success');
-        // },
-        // error: function (response) {
-        //     alert('This was an error');
-        // },
-
-        //Decidi usar a "statusCode" por acha-la mais versátil. Porém fiz funcionar com ambas.
+        error: function(xhr) {  
+            alert ('Usuário e senha inválidos');
+        }
         
     })
 })
@@ -38,7 +28,7 @@ $(document).on('click', '#logoutBtn', function(e){
                     alert ('Logout efetuado com sucesso!');
                     window.location = "/?f=loginForm&try=2";
                 }
-        }
+        },
     })
 })
 
