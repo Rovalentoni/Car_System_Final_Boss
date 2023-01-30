@@ -34,12 +34,27 @@ $(document).on("click", ".deleteBtn",function(){
         url: 'api.php/?f=deleteCars_Api',
         type: 'POST',
         data: 'carId=' + del_id,
-        success: function success (){
+        success: function success (response){
             alert('O Veículo foi deletado com sucesso!') ;
             window.location="/?f=carsHomePage&delete=1"
         },
         error: function(){
             alert('error');
+        }
+    })
+})
+$(document).on('click', '#logoutBtn', function(e){
+    e.preventDefault();
+    $.ajax({
+        url: 'api.php/?f=logout',
+        type: 'GET',
+        success: function(response, status, xhr) {
+            console.log(response);
+            console.log(xhr);
+                if(xhr.status == 204) {
+                    alert ('Logout efetuado com sucesso!');
+                    window.location = "/?f=loginForm&try=2";
+                }
         }
     })
 })

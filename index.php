@@ -32,7 +32,7 @@ class Router
         if (isset($_SESSION['login'])) {
             header('Location:/?f=mainHome');
         } else {
-            include_once INCLUDE_PATH . '/Services/login.php';
+            include_once INCLUDE_PATH . '/Templates/login/login.php';
         }
     }
 

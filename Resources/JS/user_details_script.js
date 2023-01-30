@@ -19,6 +19,23 @@ $(document).ready(function(){
     })
 })
 
+        
+$(document).on('click', '#logoutBtn', function(e){
+    e.preventDefault();
+    $.ajax({
+        url: 'api.php/?f=logout',
+        type: 'GET',
+        success: function(response, status, xhr) {
+            console.log(response);
+            console.log(xhr);
+                if(xhr.status == 204) {
+                    alert ('Logout efetuado com sucesso!');
+                    window.location = "/?f=loginForm&try=2";
+                }
+        }
+    })
+})
+
 /*  Colinha das funções do ajax - Estudo
     complete(xhr,status)	
     error(xhr,status,error)	

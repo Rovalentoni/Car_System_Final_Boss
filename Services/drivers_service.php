@@ -41,7 +41,10 @@ class driversService
             return false;
         } else
             $this->mysqli->givenQuery($createQuery);
-        return true;
+            $last_id = $this->mysqli->mysqli->insert_id;
+            $selectQuery = "SELECT * FROM drivers.drivers_table WHERE drivers_id = '" . $last_id . "';";
+            $info = $this->mysqli->givenQuery($selectQuery);
+        return $info;
     }
 
     //--------- Função de Delete -------------//
@@ -51,7 +54,8 @@ class driversService
     {
         $deleteQuery = "DELETE FROM drivers.drivers_table WHERE (drivers_id = '" . $param['driverid'] . "');";
         $this->mysqli->givenQuery($deleteQuery);
-        return true;
+        $rows = $this->mysqli->mysqli->affected_rows;
+        return $rows;
     }
 
     //--------- Função de Edit -------------//
@@ -64,10 +68,10 @@ class driversService
             $param['drivers_type'] . "', drivers_cnh = '" . $param['drivers_cnh'] . "', drivers_sex = '" . $param['drivers_sex'] . "' WHERE ( drivers_id = '" . $param['driverid'] . "');";
 
         if (empty($param['drivers_username']) || empty($param['drivers_age']) || empty($param['drivers_type']) || empty($param['drivers_cnh']) || empty($param['drivers_sex'])) {
-
             return false;
         } else
             $this->mysqli->givenQuery($editQuery);
-                 return true;
+            $rows = $this->mysqli->mysqli->affected_rows;
+                 return $rows;
     }
 }

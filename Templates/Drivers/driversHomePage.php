@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Motoristas</title>
-    <link rel="stylesheet" href="//resources/CSS/styles.css">
+    <link rel="stylesheet" href="/resources/CSS/styles.css">
     <style>
         body,
         html {
@@ -35,7 +35,7 @@
         <li class="liNavigation"><a href="/?f=userHomePage">Usuários</a></li>
         <li class="liNavigation"><a href="/?f=carsHomePage">Veículos</a></li>
         <li class="liNavigation"><a href="/?f=driversHomePage">Motoristas</a></li>
-        <li class="liNavigation"><a href="api.php/?f=logout">Logout</a></li>
+        <li class="liNavigation"><a href="api.php/?f=logout" id="logoutBtn">Logout</a></li>
     </ul>
 </div>
 <div class="sideBar">

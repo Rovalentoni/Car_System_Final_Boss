@@ -42,8 +42,6 @@ class Api
         include_once INCLUDE_PATH . '/Services/session_service.php';
         $session_Service = new SessionService;
         $session_Service->logout_User();
-        // session_destroy();
-        // header("Location:/?f=loginForm&try=2");
         http_response_code(204);
     }
 
@@ -77,21 +75,42 @@ class Api
         include_once './Services/user_service.php';
         $user_Service = new UserService;
         $create = $user_Service->create_User($_POST);
-        if ($create == true) {
+        try {
+            if ($create == false) {
+                throw new Exception("Não é possível deixar nenhum dos campos em branco"); //Tenta (Try). Se esta condicional acontecer, temos uma exceção com a mensagem "x". Exception INTERROMPE tudo. 
+                //Catch = 'Na exceção, salve o "objeto de exceção" na variável exc e depois faça a,b,c'//Pq o objeto? Pq exc pode ser usado com metodos no tipo exc->getmessage() exc->getfile(), etc. 
+            }
             http_response_code(201);
             $this->response_json($create);
-        } else if ($create == false) {
-            http_response_code(204);
+        } catch (Exception $exc) {
+            http_response_code(404); //o sistema n vai retornar 500?
+            echo ($exc->getMessage());
         }
+    
+        // if ($create != false) {
+        //     http_response_code(201);
+        //     $this->response_json($create);
+        // } else if ($create == false) {
+        //     http_response_code(204);
+        // }
     }
 
     public function deleteUser_Api()
     {
         include_once INCLUDE_PATH . '/Services/user_service.php';
         $user_Service = new UserService;
-        $user_Service->delete_User($_POST);
-        if ($user_Service->delete_User($_POST) === true) {
-            http_response_code(200);
+        $info = $user_Service->delete_User($_POST);
+        try {
+            if ($info === false || empty($info)) {
+                throw new Exception("Nenhum usuário foi encontrado");
+            }
+            if ($info >= 1) {
+                http_response_code(204);
+            }
+            echo (json_encode($info));
+        } catch (Exception $exc) {
+            http_response_code(404);
+            echo ($exc->getMessage());
         }
     }
 
@@ -99,13 +118,14 @@ class Api
     {
         include_once INCLUDE_PATH . '/Services/user_service.php';
         $user_Service = new UserService;
-        if ($user_Service->edit_User($_POST) == true) {
-            http_response_code(200);
-        } else if ($user_Service->edit_User($_POST) == false) {
+        $info = $user_Service->edit_User($_POST);
+        if ($info == false) {
+            http_response_code(404);
+        } else if ($info != false && $info >= 1) {
             http_response_code(204);
-        };
+            // echo ($info);
+        }
     }
-
     //---------------- Funções de Veículos -----------------//
 
 
@@ -123,20 +143,31 @@ class Api
         include_once './Services/cars_service.php';
         $carsService = new carsService;
         $create = $carsService->create_Car($_POST);
-        if ($create === true) {
+        try {
+            if($create == false) {
+                throw new Exception("Não é possível deixar nenhum dos campos em branco");
+            }
             http_response_code(201);
             $this->response_json($create);
-        } else {
-            http_response_code(204);
-            $this->response_json($create);
+        } catch (Exception $exc) {
+            http_response_code(404);
+            echo $exc->getMessage();
         }
+
     }
+
 
     public function deleteCars_Api()
     {
         include_once './Services/cars_service.php';
         $carsService = new carsService;
-        $carsService->delete_Car($_POST);
+        $info = $carsService->delete_Car($_POST);
+        if($info == false){
+            http_response_code(404);
+        } else if ($info >= 1) {
+            http_response_code(204);
+            // echo ($info);
+        }
         http_response_code(200);
     }
 
@@ -145,11 +176,18 @@ class Api
         include_once INCLUDE_PATH . '/Services/cars_service.php';
         $carsService = new carsService;
 
-        if ($carsService->edit_Car($_POST) == true) {
-            http_response_code(200);
-        } else if ($carsService->edit_Car($_POST) == false) {
+        // if ($carsService->edit_Car($_POST) == true) {
+        //     http_response_code(200);
+        // } else if ($carsService->edit_Car($_POST) == false) {
+        //     http_response_code(204);
+        //     echo $_POST;
+        // }
+        $info = $carsService->edit_Car($_POST);
+        if ($info == false) {
+            http_response_code(404);
+        } else if ($info != false && $info >= 1) {
             http_response_code(204);
-            echo $_POST;
+            // echo ($info);
         }
     }
     //--------------- Funções Driver -------------//
@@ -166,7 +204,13 @@ class Api
     {
         include_once './Services/drivers_service.php';
         $driverService = new driversService;
-        $driverService->delete_Driver($_POST);
+        $info = $driverService->delete_Driver($_POST);
+        if ($info == false) {
+            http_response_code(404);
+        } else if ($info != false && $info >= 1) {
+            http_response_code(204);
+            // echo ($info);
+        }
     }
 
     public function createDrivers_Api()
@@ -174,12 +218,23 @@ class Api
         include_once './Services/drivers_service.php';
         $driverService = new driversService;
         $create = $driverService->create_Driver($_POST);
-        if ($create == true) {
-            http_response_code(201);
-            $this->response_json($create);
-        } else {
-            http_response_code(204);
-        }
+        // if ($create == true) {
+        //     http_response_code(201);
+        //     $this->response_json($create);
+        // } else {
+        //     http_response_code(204);
+        // }
+            try{
+                if($create == false) {
+                    throw new Exception("Não é possível deixar nenhum dos campos em branco");
+                }
+                http_response_code(201);
+                $this->response_json($create);
+            } catch (Exception $exc) {
+                http_response_code(404);
+                echo ($exc->getMessage());
+            }
+
     }
 
     public function editDrivers_Api()
@@ -187,10 +242,11 @@ class Api
         include_once './Services/drivers_service.php';
         $driverService = new driversService;
         $edit = $driverService->edit_Driver($_POST);
-        if ($edit == true) {
-            http_response_code(200);
-        } else if ($edit == false) {
+        if ($edit == false) {
+            http_response_code(404);
+        } else if ($edit != false && $info >= 1) {
             http_response_code(204);
+            // echo ($info);
         }
     }
 }

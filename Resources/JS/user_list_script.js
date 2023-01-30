@@ -31,7 +31,9 @@ $(document).on("click", ".deleteBtn",function(){
         url: 'api.php/?f=deleteUser_Api',
         type: 'POST',
         data: 'userid=' + del_id,
-        success: function success (){
+        success: function success (response){
+            // console.log(response);
+            // alert(response);
             alert('O usuário foi deletado com sucesso!') ;
             window.location="/?f=userHomePage&delete=1";
         },
@@ -42,6 +44,7 @@ $(document).on("click", ".deleteBtn",function(){
 })
 
 
+        
 $(document).on('click', '#logoutBtn', function(e){
     e.preventDefault();
     $.ajax({
@@ -57,7 +60,6 @@ $(document).on('click', '#logoutBtn', function(e){
         }
     })
 })
-
 
 
 /*  Colinha das funções do ajax - Estudo

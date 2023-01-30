@@ -33,13 +33,15 @@ class UserService
 
     public function create_User($param)
     {
-        if (empty($param['users_username']) || empty($param['users_password']) || empty($param['users_email'])) {
+        if (empty($param['users_username']) || empty($param['users_email']) || empty($param['users_password'])) {
             return false;
         } else
             $createQuery = "INSERT INTO users.users_table (users_username, users_email, users_password) VALUES ( '" . $param['users_username'] . "','" . $param['users_email'] . "','" .  $param['users_password'] . "');";
         $this->mysqli->givenQuery($createQuery);
-        return true;
-        // }
+        $last_id = $this->mysqli->mysqli->insert_id;
+        $selectQuery = "SELECT * FROM users.users_table WHERE users_id = '" . $last_id . "';";
+        $result = $this->mysqli->givenQuery($selectQuery);
+        return $result;
     }
 
     //--------- Função de Delete -------------//
@@ -48,7 +50,8 @@ class UserService
     {
         $deleteQuery = 'DELETE FROM users_table WHERE (users_id =' . $param['userid'] . ' );';
         $this->mysqli->givenQuery($deleteQuery);
-        return true;
+        $rows = $this->mysqli->mysqli->affected_rows;
+        return $rows;
     }
 
 
@@ -56,12 +59,14 @@ class UserService
 
     public function edit_User($param)
     {
-        $editQuery = "UPDATE users.users_table SET users_username = '" . $param['users_username'] . "', users_email = '" . $param['users_email'] . "', users_password = '" . $param['users_password'] . "' WHERE (users_id = '"  . $param['userid'] . "');";
 
         if (empty($param['users_username']) || empty($param['users_email']) || empty($param['users_password'])) {
             return false;
-        }
-        $this->mysqli->givenQuery($editQuery);
-        return true;
+        } else 
+            $editQuery = "UPDATE users.users_table SET users_username = '" . $param['users_username'] . "', users_email = '" . $param['users_email'] . "', users_password = '" . $param['users_password'] . "' WHERE (users_id = '"  . $param['userid'] . "');";
+            $this->mysqli->givenQuery($editQuery);
+            $rows = $this->mysqli->mysqli->affected_rows;
+            return $rows;
+        
     }
 }

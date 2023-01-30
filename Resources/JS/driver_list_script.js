@@ -29,3 +29,19 @@ $(document).on("click", ".deleteBtn", function(){
         }
     })
 })
+
+$(document).on('click', '#logoutBtn', function(e){
+    e.preventDefault();
+    $.ajax({
+        url: 'api.php/?f=logout',
+        type: 'GET',
+        success: function(response, status, xhr) {
+            console.log(response);
+            console.log(xhr);
+                if(xhr.status == 204) {
+                    alert ('Logout efetuado com sucesso!');
+                    window.location = "/?f=loginForm&try=2";
+                }
+        }
+    })
+})

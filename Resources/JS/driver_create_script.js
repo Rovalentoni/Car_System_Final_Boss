@@ -8,13 +8,27 @@ var form = $('#driverCreateForm');
         success: function(response, status, xhr) {
             console.log (response);
             console.log (xhr);
-            if(xhr.status == 201) {
                 alert ('Motorista cadastrado com sucesso!');
                 window.location = "/?f=driversHomePage&create=1";
-            } else if (xhr.status == 204) {
-                alert ('Não é possível deixar nenhum dos campos em branco');
-                window.location = "/?f=driversCreatePage&blank=1";
-            }
+        },
+        error: function(xhr) {
+            alert (xhr.responseText);
+        }
+    })
+})
+
+$(document).on('click', '#logoutBtn', function(e){
+    e.preventDefault();
+    $.ajax({
+        url: 'api.php/?f=logout',
+        type: 'GET',
+        success: function(response, status, xhr) {
+            console.log(response);
+            console.log(xhr);
+                if(xhr.status == 204) {
+                    alert ('Logout efetuado com sucesso!');
+                    window.location = "/?f=loginForm&try=2";
+                }
         }
     })
 })

@@ -44,7 +44,10 @@ class carsService
             $createCars = "INSERT INTO cars.cars_table (cars_plate, cars_manufacturer, cars_model, cars_type, cars_year, cars_color)
              VALUES ( '" . $param['placa'] . "','" . $param['marca'] . "', '" . $param['modelo'] . "','" . $param['tipo'] . "','" . $param['ano'] . "','" . $param['cor'] . "');";
             $this->mysqli->givenQuery($createCars);
-            return true;
+            $last_id = $this->mysqli->mysqli->insert_id;
+            $selectQuery = "SELECT * FROM cars.cars_table WHERE cars_id = '" . $last_id . "';";
+            $result = $this->mysqli->givenQuery($selectQuery);
+            return $result;
         }
     }
 
@@ -55,7 +58,8 @@ class carsService
         $deleteQuery = "DELETE FROM cars.cars_table WHERE (cars_id = " . $param['carId'] . ");";
         print_r($deleteQuery);
         $this->mysqli->givenQuery($deleteQuery);
-        return true;
+        $rows = $this->mysqli->mysqli->affected_rows;
+        return $rows;
     }
 
 
@@ -68,8 +72,9 @@ class carsService
 
         if (empty($param['placa']) || empty($param['marca']) || empty($param['modelo']) || empty($param['tipo']) || empty($param['ano']) || empty($param['cor'])) {
             return false;
-        } 
+        } else 
         $this->mysqli->givenQuery($editQuery);
-        return true;
+        $rows = $this->mysqli->mysqli->affected_rows;
+        return $rows;
     }
 }
